@@ -1,9 +1,0 @@
-{
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "/home/h/hstr",
-            "binaryPath": "/home/h/hstr/hstr",
-            "binaryArgs": []
-        }
-    ]
-}
