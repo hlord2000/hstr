@@ -149,7 +149,7 @@ str_tokens_t * hstr_tokenize(str_t *str, str_t *delim) {
             tokens->num_tokens++;
         }
 
-        free(temp);
+        hstr_free(temp);
     }
     return tokens;
 }

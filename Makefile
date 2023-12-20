@@ -14,7 +14,7 @@ debug: CFLAGS += $(DEBUG_FLAGS)
 debug: hstr
 
 hstr: $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o build/$@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(@D)
