@@ -94,6 +94,32 @@ void test_hstr_tokenize(void) {
     hstr_tokens_free(tokens);
 }
 
+void test_hstr_tokenize_http(void) {
+    char *test_chars = "GET / HTTP/1.1\r\nHost: localhost:8080\r\nUser-Agent: curl/7.64.1\r\nAccept: */*\r\n\r\n";
+    char *delimiter_chars = "\r\n";
+    str_t *str = hstr(test_chars, strlen(test_chars));
+    str_t *delimiter = hstr(delimiter_chars, strlen(delimiter_chars));
+
+    str_tokens_t *tokens = hstr_tokenize(str, delimiter);
+    assert(tokens != NULL);
+
+    assert(strcmp(tokens->tokens[0]->chars, "GET / HTTP/1.1") == 0);
+    assert(tokens->tokens[0]->length == strlen("GET / HTTP/1.1"));
+
+    assert(strcmp(tokens->tokens[1]->chars, "Host: localhost:8080") == 0);
+    assert(tokens->tokens[1]->length == strlen("Host: localhost:8080"));
+
+    assert(strcmp(tokens->tokens[2]->chars, "User-Agent: curl/7.64.1") == 0);
+    assert(tokens->tokens[2]->length == strlen("User-Agent: curl/7.64.1"));
+
+    assert(strcmp(tokens->tokens[3]->chars, "Accept: */*") == 0);
+    assert(tokens->tokens[3]->length == strlen("Accept: */*"));
+
+    hstr_free(str);
+    hstr_free(delimiter);
+    hstr_tokens_free(tokens);
+}
+
 int main(void) {
     test_hstr();
     test_hstr_free();
@@ -102,6 +128,7 @@ int main(void) {
     test_hstr_ncompare();
     test_hstr_compare();
     test_hstr_tokenize();
+    test_hstr_tokenize_http();
     printf("All tests passed!\n");
     return 0;
 }
