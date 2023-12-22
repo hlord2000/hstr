@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 typedef struct {
     char *chars;
@@ -34,6 +35,6 @@ str_tokens_t * hstr_tokenize(str_t *str, str_t *delim);
 
 int hstr_tokens_free(str_tokens_t *tokens);
 
-#define PRINT_HSTR(hstr) for (int i = 0; i < (hstr)->length; i++) { printf("%c", (hstr)->chars[i]); } printf("\n");
+void print_hstr(str_t *hstr);
 
 #endif

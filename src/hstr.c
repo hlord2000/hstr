@@ -167,3 +167,12 @@ int hstr_tokens_free(str_tokens_t *tokens) {
     free(tokens);
     return 0;
 }
+
+void print_hstr(str_t *str) {
+    printf("String: ");
+    for (int i = 0; i < str->length; i++) {
+        printf("%c", str->chars[i]); 
+    } 
+    printf("Length: %zu\n", str->length);
+    printf("\n");
+}
